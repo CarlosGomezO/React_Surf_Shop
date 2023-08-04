@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* google icons */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+
+
+html, body, #root{
+    height: 100%;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+}

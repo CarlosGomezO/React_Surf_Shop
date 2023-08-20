@@ -1,16 +1,22 @@
 import React from "react";
-import NavbarComp from "./components/Navbar/Navbar";
-import Main from "./components/Main/Main"
-import Footer from "./components/Footer/Footer";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import NavbarComp from "./components/Navbar";
+import {Main} from "./components/Main" 
+import Footer from "./components/Footer";
+
+
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+
+
+
 function App() {
   return (
-    <>
+    <BrowserRouter>
+
       <NavbarComp/>
       <Main/>
-      <ItemListContainer greeting="Hola tutor, compramé una remera jaja"/>
       <Footer/>
-    </>
+      
+    </BrowserRouter>
   );
 }
 

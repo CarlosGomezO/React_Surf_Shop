@@ -8,10 +8,12 @@
 
 
 html, body, #root{
-    height: 100%;
+    
+    background-color:#f8fbfc;
 }
 
-#root{
-    display: flex;
-    flex-direction: column;
+.container_general{
+    height: 200em;
+    
+    background-color:#f8fbfc;
 }

@@ -27,6 +27,7 @@ const Item = ({ product }) => {
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
               {product.title}
+              
             </h2>
             <p className="text-gray-600 mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at lectus id elit vestibulum

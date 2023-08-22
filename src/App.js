@@ -3,8 +3,7 @@ import NavbarComp from "./components/Navbar";
 import {Main} from "./components/Main" 
 import Footer from "./components/Footer";
 
-
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 
 

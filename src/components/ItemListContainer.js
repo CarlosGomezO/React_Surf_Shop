@@ -6,9 +6,10 @@ function ItemListContainer({ greeting }) {
   const [loading, setLoading] = useState(true);
 
   const { categoryid } = useParams(); 
+
   useEffect(() => {
     const fetchData = async () => {
-      await setTimeout(async () => {
+      try {
         let url = 'https://fakestoreapi.com/products';
         if (categoryid) {
           url = `https://fakestoreapi.com/products/category/${categoryid}`;
@@ -18,12 +19,15 @@ function ItemListContainer({ greeting }) {
         const data = await response.json();
         setProducts(data);
         setLoading(false);
-      }, 2000);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
     };
 
     fetchData();
   }, [categoryid]);
-
+    console.log(categoryid)
   return (
     <div className="container_general bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">

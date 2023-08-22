@@ -7,13 +7,16 @@
 
 
 
-html, body, #root{
+
+.container_general{
+    height: 180em;
     
     background-color:#f8fbfc;
 }
 
-.container_general{
-    height: 200em;
-    
-    background-color:#f8fbfc;
+.navbar{
+    display: flex;
+    width: 100%;
+    align-items: end;
+    justify-content: end;
 }

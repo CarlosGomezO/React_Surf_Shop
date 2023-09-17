@@ -1,28 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { CartWidget } from "./CartWidget";
+import { CartWidget } from "./cart/CartWidget";
+import { CartContext } from "./cart/CartContext"; 
+import { db } from "../components/db/firebase";
 
 export default function NavbarComp() {
   const [categories, setCategories] = useState([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+
+  const { cart } = useContext(CartContext); // Obtén la información del carrito del contexto
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const response = await fetch("https://fakestoreapi.com/products/categories");
-      const data = await response.json();
-      setCategories(data);
+    const fetchCategoriesFromFirebase = async () => {
+      try {
+        const productsRef = db.collection("Products");
+        const snapshot = await productsRef.get();
+        const categoriesArray = [];
+        
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          const category = data.category;
+          if (!categoriesArray.includes(category)) {
+            categoriesArray.push(category);
+          }
+        });
+
+        setCategories(categoriesArray);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoadingCategories(false);
+      }
     };
 
-    fetchCategories();
+    fetchCategoriesFromFirebase();
   }, []);
 
   const navigation = [
     { name: "Home", href: "/", current: true },
-    { name: "Jewelery", href: "/category/jewelery", current: false },
-    { name: "Electronics", href: "/category/electronics", current: false },
+    { name: "Longboards", href: "/category/Longboard", current: false },
+    { name: "Boards", href: "/category/Board", current: false },
   ];
-  
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -46,7 +66,6 @@ export default function NavbarComp() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -68,36 +87,36 @@ export default function NavbarComp() {
                       {({ open }) => (
                         <>
                           <button className="text-gray-500 hover:bg-[#4f9ee3] hover:text-white px-3 py-2 rounded-md text-md font-medium ">
-                            
                           </button>
                           <Disclosure.Panel>
                             <div className="space-y-1 px-2 pb-3 pt-2">
-                              {categories.map((category) => (
-                                <NavLink
-                                  key={category}
-                                  to={`/category/${category}`}
-                                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                                  activeClassName="bg-gray-900 text-white"
-                                >
-                                  {category}
-                                </NavLink>
-                              ))}
+                              {loadingCategories ? (
+                                <p>Loading categories...</p>
+                              ) : (
+                                categories.map((category) => (
+                                  <NavLink
+                                    key={category}
+                                    to={`/category/${category}`}
+                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                                    activeClassName="bg-gray-900 text-white"
+                                  >
+                                    {category}
+                                  </NavLink>
+                                ))
+                              )}
                             </div>
                           </Disclosure.Panel>
                         </>
                       )}
                     </Disclosure>
-                    <CartWidget />
+                    <CartWidget totalItems={cart.reduce((total, item) => total + item.quantity, 0)} />
                   </div>
                 </div>
               </div>
-              
             </div>
-            
           </div>
         </>
       )}
     </Disclosure>
   );
 }
-

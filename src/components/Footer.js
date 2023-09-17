@@ -6,6 +6,14 @@ import {
   FaInstagram,
   FaTwitterSquare,
 } from "react-icons/fa";
+
+
+
+
+
+
+
+
 const Footer = () => {
   return (
     <div className="bg-[#101827] w-full mx-auto py-10 px-4 lg:px-8 xl:px-16 2xl:px-20 text-gray-300">

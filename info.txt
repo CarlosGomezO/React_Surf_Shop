@@ -13,3 +13,39 @@ Props = Parametros
 *********************************************************************************************************************************
 
 
+
+// Productos FAKE API  (NO USADOS)
+  // useEffect(() => {
+
+  //   const productsCollection = collection(db, "Products")
+  //   const consulta = getDocs(productsCollection)
+
+  //   consulta
+  //   .then((resultado) => {
+  //     console.log(resultado.docs[0].id)
+  //   })
+  //   .catch((error) => {
+  //     console.log("No OK")
+  //   })
+
+  //   const fetchData = async () => {
+  //     try {
+  //       let url = 'https://fakestoreapi.com/products';
+  //       if (categoryid) {
+  //         url = `https://fakestoreapi.com/products/category/${categoryid}`;
+  //       }
+        
+  //       const response = await fetch(url);
+  //       const data = await response.json();
+  //       setProducts(data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error(error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [categoryid]);
+  //   console.log(products)
+  

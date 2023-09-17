@@ -7,10 +7,15 @@ const ItemDetail = ({ product }) => {
 
   return (
     <div className="container_general bg-white">
-      {/* Mostrar detalles del producto aquí */}
+      {/* Muestra los detalles del producto aquí */}
+      <h2>{product.name}</h2>
+      <p>{product.description}</p>
+      <p>Price: ${product.price}</p>
+      <p>Stock: ${product.stock}</p>
+
+
     </div>
   );
 };
 
 export default ItemDetail;
-

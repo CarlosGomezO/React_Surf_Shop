@@ -36,7 +36,6 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // Calcula el total cuando cambia el carrito
     const newTotal = cart.reduce(
       (total, item) => total + item.price * item.quantity,
       0

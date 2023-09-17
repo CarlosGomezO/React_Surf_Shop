@@ -1,24 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Item from "./Item";
+import ItemCount from "../items/ItemCount";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../db/firebase";
-import { CartContext } from "../cart/CartContext";
 import { PacmanLoader } from 'react-spinners';
-import ItemCount from "./ItemCount";
+
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const { addItem } = useContext(CartContext);
+  
 
-  const [selectedQuantity, setSelectedQuantity] = useState(1); // Agrega un estado para la cantidad seleccionada
 
-  const handleItemCountChange = (quantity) => {
-    // Actualiza la cantidad seleccionada
-    setSelectedQuantity(quantity);
-  };
+
 
   useEffect(() => {
     setLoading(true);
@@ -39,11 +34,7 @@ const ItemDetailContainer = () => {
       });
   }, [id]);
 
-  const handleAddToCart = () => {
-    if (product) {
-      addItem(product, selectedQuantity); // Agrega el producto al carrito con la cantidad seleccionada
-    }
-  };
+
 
   if (loading) {
     return (
@@ -61,14 +52,9 @@ const ItemDetailContainer = () => {
       <div className="container_general bg-white">
         {product ? (
           <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <Item product={product} />
-            <ItemCount stock={product.stock} onAdd={handleItemCountChange} />
-            <button
-              onClick={handleAddToCart}
-              className="bg-[#4f9ee3] text-white px-4 py-2 rounded-full"
-            >
-              Agregar al carrito
-            </button>
+            <ItemCount product={product} />
+            
+           
           </div>
         ) : (
           <p>Loading...</p>

@@ -4,39 +4,13 @@ import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { CartWidget } from "./cart/CartWidget";
 import { CartContext } from "./cart/CartContext"; 
-import { db } from "../components/db/firebase";
 
 export default function NavbarComp() {
-  const [categories, setCategories] = useState([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [categories] = useState([]);
+  const [loadingCategories] = useState(true);
 
-  const { cart } = useContext(CartContext); // Obtén la información del carrito del contexto
+  const { cart } = useContext(CartContext);
 
-  useEffect(() => {
-    const fetchCategoriesFromFirebase = async () => {
-      try {
-        const productsRef = db.collection("Products");
-        const snapshot = await productsRef.get();
-        const categoriesArray = [];
-        
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          const category = data.category;
-          if (!categoriesArray.includes(category)) {
-            categoriesArray.push(category);
-          }
-        });
-
-        setCategories(categoriesArray);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoadingCategories(false);
-      }
-    };
-
-    fetchCategoriesFromFirebase();
-  }, []);
 
   const navigation = [
     { name: "Home", href: "/", current: true },
@@ -49,7 +23,7 @@ export default function NavbarComp() {
   }
 
   return (
-    <Disclosure as="nav" className="navbar">
+    <Disclosure as="nav" className="navbar shadow-lg">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-[100%] ">

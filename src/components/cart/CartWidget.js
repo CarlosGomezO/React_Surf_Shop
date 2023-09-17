@@ -8,7 +8,7 @@ export const CartWidget = () => {
   return (
     <div>
       <NavLink to="/Cart">
-        <i className="material-icons text-3xl">shopping_cart</i>
+        <i className="material-icons text-3xl ">shopping_cart</i>
       </NavLink>
       {total > 0 ? (
         <span>{total}</span>

@@ -52,9 +52,9 @@ const CheckoutForm = ({ onConfirm }) => {
   };
 
   return (
-    <form>
-      <div className="mb-6 mx-4">
-        <label className="ml-2 block mb-2 text-lg font-medium text-gray-900">
+    <form className="mx-auto max-w-md p-4">
+      <div className="mb-4">
+        <label className="block text-lg font-medium text-gray-900">
           Name
         </label>
         <input
@@ -62,14 +62,14 @@ const CheckoutForm = ({ onConfirm }) => {
           value={name}
           onChange={({ target }) => setName(target.value)}
           required
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5 "
+          className="bg-gray-100 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5 "
         />
         {errors.name && (
           <p className="text-red-500 text-sm mt-1">{errors.name}</p>
         )}
       </div>
-      <div className="mb-6 mx-4">
-        <label className="ml-2 block mb-2 text-lg font-medium text-gray-900">
+      <div className="mb-4">
+        <label className="block text-lg font-medium text-gray-900">
           Phone
         </label>
         <input
@@ -77,14 +77,14 @@ const CheckoutForm = ({ onConfirm }) => {
           value={phone}
           onChange={({ target }) => setPhone(target.value)}
           required
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5 "
+          className="bg-gray-100 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5 "
         />
         {errors.phone && (
           <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
         )}
       </div>
-      <div className="mb-6 mx-4">
-        <label className="ml-2 block mb-2 text-lg font-medium text-gray-900">
+      <div className="mb-4">
+        <label className="block text-lg font-medium text-gray-900">
           Email
         </label>
         <input
@@ -92,26 +92,28 @@ const CheckoutForm = ({ onConfirm }) => {
           value={email}
           onChange={({ target }) => setEmail(target.value)}
           required
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5 "
+          className="bg-gray-100 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5 "
         />
         {errors.email && (
           <p className="text-red-500 text-sm mt-1">{errors.email}</p>
         )}
       </div>
-      <button
-        className="ml-3 mb-6 mr-4 rounded-full border border-[#E5E7EB] py-2 px-4 text-base font-medium text-body-color transition hover:border-white hover:bg-black hover:text-white"
-        type="submit"
-        onClick={handleConfirm}
-      >
-        Submit
-      </button>
-      <button
-        className="ml-3 mb-6 mr-4 rounded-full border border-[#E5E7EB] py-2 px-4 text-base font-medium text-body-color transition hover:border-white hover:bg-black hover:text-white"
-        type="button"
-        onClick={handleCancel}
-      >
-        Cancel
-      </button>
+      <div className="flex justify-end">
+        <button
+          className="bg-blue-500 text-white py-2 px-4 rounded-full text-lg font-medium hover:bg-blue-600 transition"
+          type="submit"
+          onClick={handleConfirm}
+        >
+          Submit
+        </button>
+        <button
+          className="ml-4 bg-red-500 text-white py-2 px-4 rounded-full text-lg font-medium hover:bg-red-600 transition"
+          type="button"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };
